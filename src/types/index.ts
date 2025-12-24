@@ -13,18 +13,18 @@ export interface LogEntry {
 }
 export type ParseResult =
   | { success: true; entry: LogEntry }
-  | { succsess: false; error: string; raw: string };
+  | { success: false; error: string; raw: string };
 
 /*
  ** Zod Schema For CLI arguments Validation
  */
-export const CLIOptionsschema = z.object({
+export const CLIOptionsSchema = z.object({
   inputFile: z.string().min(1, "Input file path is required"),
-  outputFile: z.string().min(1, "Input file path is required"),
+  outputFile: z.string().min(1, "Output file path is required"),
 });
 
 //Validate CLI Options
-export type CLIOptions = z.infer<typeof CLIOptionsschema>;
+export type CLIOptions = z.infer<typeof CLIOptionsSchema>;
 
 export interface LogEvent {
   timestamp: string;
@@ -73,5 +73,5 @@ export interface AnalysisSummary {
   timeRange: TimeRange | null;
   summary: LevelCounts;
   errors: EventCollection;
-  warninig: EventCollection;
+  warnings: EventCollection;
 }
